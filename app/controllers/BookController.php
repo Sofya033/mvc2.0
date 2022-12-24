@@ -5,32 +5,36 @@ namespace App\Controller;
 use App\Model\BookModel;
 
 class BookController {
-	public function getAllBooks(): ?array
+	private string $name_book;
+	private string $author;
+	private string $category;
+	private array $new_book;
+
+	public function getAllBooks(): array
 	{
 		$books = new BookModel;
 
-		return $books->getData();
+		$result = $books->getData();
+
+		return $result;
 	}
 
-
+	public function __construct(string $name_book, string $author, string $category, array $new_book)
+	{
+		$this->name_book = $name_book;
+		$this->author = $author;
+		$this->category = $category;
+		$this->new_book = $new_book;
+		array_push($this->new_book, $this->name_book, $this->author, $this->category);
+	}
 
 	public function addBook(array $book): void
 	{
-		// TODO add; array_push
-		array_push($data, [
-			'name_book' => 'War & Peace',
-			'author' => 'Lev Tolstoi',
-			'category' => 'antiutopy'
-		]);
+		array_push($data, $this->new_book);
 	}
 
-	public function deleteBook(int $id): void
+	/*public function deleteBook(int $id): void
 	{
-		// TODO delete; array_diff
-		array_diff($data, [
-			'name_book' => '500 Farengeit',
-			'author' => 'Ray Bradberry',
-			'category' => 'antiutopy'
-		]);
-	}
+		unset($data[]);
+	}*/
 }
