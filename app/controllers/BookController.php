@@ -10,31 +10,40 @@ class BookController {
 	private string $category;
 	private array $new_book;
 
+	private $allBooks = [];
+
+	private $newBook = [];
+
 	public function getAllBooks(): array
 	{
-		$books = new BookModel;
+		$books = new BookModel();
 
-		$result = $books->getData();
+		$this->allBooks = $books->getData();
 
-		return $result;
+		return $this->allBooks;
 	}
 
-	public function __construct(string $name_book, string $author, string $category, array $new_book)
+	public function __construct(string $name_book, string $author, string $category)
 	{
 		$this->name_book = $name_book;
 		$this->author = $author;
 		$this->category = $category;
-		$this->new_book = $new_book;
-		array_push($this->new_book, $this->name_book, $this->author, $this->category);
+
+		$this->newBook = [
+			'name_book' => $this->name_book,
+			'author' => $this->author,
+			'category' => $this->category
+		];
 	}
 
-	public function addBook(array $book): void
+	public function addBook(): void
 	{
-		array_push($data, $this->new_book);
+		// TODO добавлять в правильный массив
+		array_push($this->allBooks, $this->newBook);
 	}
 
-	/*public function deleteBook(int $id): void
+	public function deleteBook(int $id): void
 	{
-		unset($data[]);
-	}*/
+		// TODO delete book
+	}
 }

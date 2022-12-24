@@ -6,7 +6,8 @@ require_once __DIR__ . "../../vendor/autoload.php";
 
 use App\Controller\BookController;
 
-$book = new BookController();
+$book = new BookController('Worlds War', 'Gerbert',	'fantastic');
+$book->addBook();
 
 foreach ($book->getAllBooks() as $key => $value) {
 	$number = $key + 1; 
